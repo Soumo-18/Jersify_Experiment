@@ -11,6 +11,8 @@ const Navbar = () => {
 const toggleNavbar = () => {
       setMobileDrawerOpen(!mobileDrawerOpen)
   };
+  
+  
 
   const navItems = [
     { label: "Home", href: "/" },
@@ -58,9 +60,9 @@ const toggleNavbar = () => {
             <div className="container px-4 mx-auto relative lg:text-sm" >
                <div className="flex justify-between items-center">
                 <div className="flex space-x-12 items-center flex-shrink-0">
-                  <GiHamburgerMenu className='' />
+                  {/* <GiHamburgerMenu className='' /> */}
                   <img className='h-10 w-20' src={logo} alt="logo" />
-                  <input type="text" placeholder='Search' className='rounded-xl  text-center border hover:border-lime-300 px-6 py-2' />
+                  <input type="text" placeholder='Search' className='hidden md:block rounded-xl  text-center border hover:border-lime-300 px-6 py-2' />
                 </div>
                     <ul className="hidden lg:flex ml-14 space-x-12">
                         {navItems.map((item, index) => (

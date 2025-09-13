@@ -1,4 +1,5 @@
 import React from 'react'
+import { FaFacebook, FaInstagram } from 'react-icons/fa'
 
 const Footer = () => {
   return (
@@ -26,7 +27,7 @@ const Footer = () => {
     <a className="link link-hover">Cookie policy</a>
   </nav>
 </footer> */}
-<footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-10">
+{/* <footer className="footer sm:footer-horizontal bg-base-200 text-base-content p-10">
   <nav>
     <h6 className="footer-title">Services</h6>
     <a className="link link-hover">Branding</a>
@@ -104,10 +105,124 @@ const Footer = () => {
       </a>
     </div>
   </nav>
-</footer>
+</footer> */}
+    
+    {/* <div className='max-w-[1300px] mx-auto bg-gradient-to-r from-gray-800 via-gray-900 to-black rounded-t-3xl 
+                p-6 md:p-20 text-sm md:text-lg mt-12'>
+     
+       <ul className='space-y-2 mb-6'>
+          <p className='text-gray-200 font-bold'>JERSIFY</p>
+          <p className='text-gray-400'> “Wear Your Loyalty. Rep Your Club. Rule the Streets.”</p>
+          <div className='flex flex-row gap-6 text-gray-400 '>
+            <FaFacebook/>
+            <FaInstagram/>
+          </div>
+          <p className='text-gray-400'>@ 2025 JERSIFY</p>
+       </ul>
+
+       <div className='grid grid-cols-3'>
+       <ul className='space-y-2'>
+        <li className='font-bold text-gray-200'>INFORMATION</li>
+        <li  className='text-gray-400'>About Us</li>
+        <li  className='text-gray-400'>Refund and Returns Policy</li>
+        <li  className='text-gray-400'>Privacy Policy</li>
+        <li  className='text-gray-400'>FAQ</li>
+       </ul>
+
+       <ul className='space-y-2'>
+        <li className='font-bold text-gray-200'>CUSTOMER SERVICE</li>
+        <li  className='text-gray-400'>Track Your Order</li>
+        <li  className='text-gray-400'>Contact Us</li>
+        
+       </ul>
+
+       <ul className='space-y-2'>
+        <input type="text" placeholder='Enter Email ID' className='bg-white text-center' />
+        <li className='font-bold text-gray-200'>Contact</li>
+        <li  className='text-gray-400'>+91 xxxxxxxx</li>
+        <li  className='text-gray-400'>jersify@gmail.com</li>
+        
+       </ul>
+       </div>
+       
+    </div> */}
+
+
+
+
+
+
+
+<div className="footer w-full h-full sm:footer-horizontal  bg-base-200 text-base-content p-10">
+ <div className='flex justify-between'>
+  <ul className='flex flex-col'>
+    <h6 className="font-semibold">Services</h6>
+    <a className="hover:bg-white/20 ">Branding</a>
+    <a className="hover:bg-white/20 ">Design</a>
+    <a className="hover:bg-white/20 ">Marketing</a>
+    <a className="hover:bg-white/20 ">Advertisement</a>
+  </ul>
+  <ul className='flex flex-col'>
+    <h6 className="font-semibold">Company</h6>
+    <a className="hover:bg-white/20 ">About us</a>
+    <a className="hover:bg-white/20">Contact</a>
+    <a className="hover:bg-white/20 ">Jobs</a>
+    <a className="hover:bg-white/20 ">Press kit</a>
+  </ul>
+  <ul className='flex flex-col'>
+    <h6 className="font-semibold">Legal</h6>
+    <a className="hover:bg-white/20 ">Terms of use</a>
+    <a className="hover:bg-white/20 ">Privacy policy</a>
+    <a className="hover:bg-white/20 ">Cookie policy</a>
+  </ul>
+  <div>
+    <h6 className="font-semibold">Newsletter</h6>
+    <div className="">
+      <label>Enter your email address</label>
+      <div className="flex space-x-2">
+        <input
+          type="text"
+          placeholder="username@site.com"
+          className='rounded-xl  text-center border hover:border-lime-300 px-4 py-2' />
+        <button className=" text-xl border hover:bg-orange-500 py-2 px-3">Subscribe</button>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     </>
   )
 }
 
 export default Footer
+
+
+
+
+
+
+
+
+
+
