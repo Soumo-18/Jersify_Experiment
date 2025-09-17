@@ -1,18 +1,416 @@
-// import React from 'react'
+// // import React from 'react'
 
-// const Login = () => {
-//   return (
-//     <>
+// // const Login = () => {
+// //   return (
+// //     <>
     
     
-//     </>
-//   )
-// }
+// //     </>
+// //   )
+// // }
 
-// export default Login
+// // export default Login
 
 
-// import { useRef, useLayoutEffect, useState } from "react";
+// // import { useRef, useLayoutEffect, useState } from "react";
+// // import {
+// //   motion,
+// //   useScroll,
+// //   useSpring,
+// //   useTransform,
+// //   useMotionValue,
+// //   useVelocity,
+// //   useAnimationFrame,
+// // } from "motion/react";
+
+// // function useElementWidth(ref) {
+// //   const [width, setWidth] = useState(0);
+
+// //   useLayoutEffect(() => {
+// //     function updateWidth() {
+// //       if (ref.current) {
+// //         setWidth(ref.current.offsetWidth);
+// //       }
+// //     }
+// //     updateWidth();
+// //     window.addEventListener("resize", updateWidth);
+// //     return () => window.removeEventListener("resize", updateWidth);
+// //   }, [ref]);
+
+// //   return width;
+// // }
+
+// //  export const ScrollVelocity = ({
+// //   scrollContainerRef,
+// //   texts = [],
+// //   velocity = 100,
+// //   className = "",
+// //   damping = 50,
+// //   stiffness = 400,
+// //   numCopies = 6,
+// //   velocityMapping = { input: [0, 1000], output: [0, 5] },
+// //   parallaxClassName,
+// //   scrollerClassName,
+// //   parallaxStyle,
+// //   scrollerStyle,
+// // }) => {
+// //   function VelocityText({
+// //     children,
+// //     baseVelocity = velocity,
+// //     scrollContainerRef,
+// //     className = "",
+// //     damping,
+// //     stiffness,
+// //     numCopies,
+// //     velocityMapping,
+// //     parallaxClassName,
+// //     scrollerClassName,
+// //     parallaxStyle,
+// //     scrollerStyle,
+// //   }) {
+// //     const baseX = useMotionValue(0);
+// //     const scrollOptions = scrollContainerRef
+// //       ? { container: scrollContainerRef }
+// //       : {};
+// //     const { scrollY } = useScroll(scrollOptions);
+// //     const scrollVelocity = useVelocity(scrollY);
+// //     const smoothVelocity = useSpring(scrollVelocity, {
+// //       damping: damping ?? 50,
+// //       stiffness: stiffness ?? 400,
+// //     });
+// //     const velocityFactor = useTransform(
+// //       smoothVelocity,
+// //       velocityMapping?.input || [0, 1000],
+// //       velocityMapping?.output || [0, 5],
+// //       { clamp: false }
+// //     );
+
+// //     const copyRef = useRef(null);
+// //     const copyWidth = useElementWidth(copyRef);
+
+// //     function wrap(min, max, v) {
+// //       const range = max - min;
+// //       const mod = (((v - min) % range) + range) % range;
+// //       return mod + min;
+// //     }
+
+// //     const x = useTransform(baseX, (v) => {
+// //       if (copyWidth === 0) return "0px";
+// //       return `${wrap(-copyWidth, 0, v)}px`;
+// //     });
+
+// //     const directionFactor = useRef(1);
+// //     useAnimationFrame((t, delta) => {
+// //       let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
+
+// //       if (velocityFactor.get() < 0) {
+// //         directionFactor.current = -1;
+// //       } else if (velocityFactor.get() > 0) {
+// //         directionFactor.current = 1;
+// //       }
+
+// //       moveBy += directionFactor.current * moveBy * velocityFactor.get();
+// //       baseX.set(baseX.get() + moveBy);
+// //     });
+
+// //     const spans = [];
+// //     for (let i = 0; i < (numCopies ?? 1); i++) {
+// //       spans.push(
+// //         <span
+// //           className={`flex-shrink-0 ${className}`}
+// //           key={i}
+// //           ref={i === 0 ? copyRef : null}
+// //         >
+// //           {children}
+// //         </span>
+// //       );
+// //     }
+
+// //     return (
+// //       <div
+// //         className={`${parallaxClassName} relative overflow-hidden`}
+// //         style={parallaxStyle}
+// //       >
+// //         <motion.div
+// //           className={`${scrollerClassName} flex whitespace-nowrap text-center font-sans text-4xl font-bold tracking-[-0.02em] drop-shadow md:text-[5rem] md:leading-[5rem]`}
+// //           style={{ x, ...scrollerStyle }}
+// //         >
+// //           {spans}
+// //         </motion.div>
+// //       </div>
+// //     );
+// //   }
+
+// //   return (
+// //     <section>
+// //       {texts.map((text, index) => (
+// //         <VelocityText
+// //           key={index}
+// //           className={className}
+// //           baseVelocity={index % 2 !== 0 ? -velocity : velocity}
+// //           scrollContainerRef={scrollContainerRef}
+// //           damping={damping}
+// //           stiffness={stiffness}
+// //           numCopies={numCopies}
+// //           velocityMapping={velocityMapping}
+// //           parallaxClassName={parallaxClassName}
+// //           scrollerClassName={scrollerClassName}
+// //           parallaxStyle={parallaxStyle}
+// //           scrollerStyle={scrollerStyle}
+// //         >
+// //           {text}&nbsp;
+// //         </VelocityText>
+// //       ))}
+// //     </section>
+// //   );
+// // }; 
+
+
+// // export default ScrollVelocity;
+
+// // ScrollVelocity.jsx
+
+
+
+
+
+// // ScrollVelocity.jsx
+
+// // import { useRef, useLayoutEffect, useState } from "react";
+// // import {
+// //   motion,
+// //   useScroll,
+// //   useSpring,
+// //   useTransform,
+// //   useMotionValue,
+// //   useVelocity,
+// //   useAnimationFrame,
+// // } from "motion/react";
+
+// // function useElementWidth(ref) {
+// //   const [width, setWidth] = useState(0);
+// //   useLayoutEffect(() => {
+// //     function updateWidth() {
+// //       if (ref.current) {
+// //         setWidth(ref.current.offsetWidth);
+// //       }
+// //     }
+// //     updateWidth();
+// //     window.addEventListener("resize", updateWidth);
+// //     return () => window.removeEventListener("resize", updateWidth);
+// //   }, [ref]);
+// //   return width;
+// // }
+
+// // function VelocityText({
+// //   children,
+// //   baseVelocity = 100,
+// //   scrollContainerRef,
+// //   className = "",
+// //   damping = 50,
+// //   stiffness = 400,
+// //   numCopies = 1,
+// //   velocityMapping = { input: [0, 1000], output: [0, 5] },
+// //   parallaxClassName,
+// //   scrollerClassName,
+// //   parallaxStyle,
+// //   scrollerStyle,
+// // }) {
+// //   const baseX = useMotionValue(0);
+// //   const scrollOptions = scrollContainerRef ? { container: scrollContainerRef } : {};
+// //   const { scrollY } = useScroll(scrollOptions);
+// //   const scrollVelocity = useVelocity(scrollY);
+// //   const smoothVelocity = useSpring(scrollVelocity, { damping, stiffness });
+// //   const velocityFactor = useTransform(
+// //     smoothVelocity,
+// //     velocityMapping.input,
+// //     velocityMapping.output,
+// //     { clamp: false }
+// //   );
+
+// //   const copyRef = useRef(null);
+// //   const copyWidth = useElementWidth(copyRef);
+
+// //   function wrap(min, max, v) {
+// //     const range = max - min;
+// //     const mod = (((v - min) % range) + range) % range;
+// //     return mod + min;
+// //   }
+
+// //   const x = useTransform(baseX, (v) => {
+// //     if (copyWidth === 0) return "0px";
+// //     return `${wrap(-copyWidth, 0, v)}px`;
+// //   });
+
+// //   const directionFactor = useRef(1);
+// //   useAnimationFrame((t, delta) => {
+// //     let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
+// //     baseX.set(baseX.get() + moveBy);
+
+// //     // Flip direction when reaching bounds
+// //     if (baseX.get() > 0 || baseX.get() < -copyWidth) {
+// //       directionFactor.current *= -1;
+// //     }
+// //   });
+
+// //   const spans = [];
+// //   for (let i = 0; i < numCopies; i++) {
+// //     spans.push(
+// //       <span className={`flex-shrink-0 ${className}`} key={i} ref={i === 0 ? copyRef : null}>
+// //         {children}
+// //       </span>
+// //     );
+// //   }
+
+// //   return (
+// //     <div className={`${parallaxClassName} relative overflow-hidden`} style={parallaxStyle}>
+// //       <motion.div
+// //         className={`${scrollerClassName} flex whitespace-nowrap`}
+// //         style={{ x, ...scrollerStyle }}
+// //       >
+// //         {spans}
+// //       </motion.div>
+// //     </div>
+// //   );
+// // }
+
+// // export const ScrollVelocity = ({
+// //   children,
+// //   scrollContainerRef,
+// //   velocity = 75,
+// //   className = "",
+// //   damping = 50,
+// //   stiffness = 400,
+// //   numCopies = 1,
+// //   velocityMapping = { input: [0, 1000], output: [0, 5] },
+// //   parallaxClassName,
+// //   scrollerClassName,
+// //   parallaxStyle,
+// //   scrollerStyle,
+// // }) => {
+// //   return (
+// //     <VelocityText
+// //       className={className}
+// //       baseVelocity={velocity}
+// //       scrollContainerRef={scrollContainerRef}
+// //       damping={damping}
+// //       stiffness={stiffness}
+// //       numCopies={numCopies}
+// //       velocityMapping={velocityMapping}
+// //       parallaxClassName={parallaxClassName}
+// //       scrollerClassName={scrollerClassName}
+// //       parallaxStyle={parallaxStyle}
+// //       scrollerStyle={scrollerStyle}
+// //     >
+// //       {children}
+// //     </VelocityText>
+// //   );
+// // };
+
+// // export default ScrollVelocity;
+
+
+// // import ElectricBorder from '../../components/ElectricBorder';
+
+// // const clubs = [
+// //   'Manchester United',
+// //   'Real Madrid',
+// //   'AC Milan',
+// //   'Bayern Munich',
+// //   'Barcelona',
+// //   'Juventus',
+// // ];
+
+// // const ScrollVelocity = () => {
+// //   return (
+// //     <div className="flex overflow-x-auto gap-4 p-4">
+// //       {clubs.map((club, index) => (
+// //         <ElectricBorder
+// //           key={index}
+// //           color="#7df9ff"
+// //           speed={1.2}
+// //           chaos={0.6}
+// //           thickness={2}
+// //           style={{ borderRadius: 12, padding: '12px', minWidth: '200px' }}
+// //         >
+// //           <div className="club-box text-center">
+// //             <p className="text-white font-semibold text-lg">{club}</p>
+// //           </div>
+// //         </ElectricBorder>
+// //       ))}
+// //     </div>
+// //   );
+// // };
+
+// // export default ScrollVelocity;
+
+// // import ElectricBorder from '../../components/ElectricBorder';
+
+// // const clubs = [
+// //   "Bayern Munich", "Borussia Dortmund", "RB Leipzig", "Real Madrid", "Barcelona", "Atlético Madrid",
+// //   "Arsenal", "Manchester City", "Liverpool", "Chelsea", "Manchester United", "Tottenham Hotspur",
+// //   "Juventus", "AC Milan", "Inter Milan", "Napoli", "AS Roma", "Paris Saint-Germain", "Marseille",
+// //   "Ajax", "Feyenoord", "Porto", "Benfica", "Sporting CP", "Galatasaray", "Fenerbahçe", "Celtic",
+// //   "Rangers", "Club Brugge", "Shakhtar Donetsk", "Al Hilal", "Al Nassr", "LA Galaxy", "New York City FC",
+// //   "Flamengo", "River Plate", "Boca Juniors", "Sao Paulo", "Palmeiras", "Monterrey", "Tigres UANL",
+// //   "Seattle Sounders", "Toronto FC", "Pachuca", "Cruzeiro", "Corinthians", "Vasco da Gama", "Besiktas",
+// //   "Red Star Belgrade", "Dinamo Zagreb", "Anderlecht", "Leeds United", "Everton", "Roma", "Lazio"
+// // ];
+
+// // // Helper to chunk array into rows
+// // const chunkArray = (arr, size) =>
+// //   Array.from({ length: Math.ceil(arr.length / size) }, (_, i) =>
+// //     arr.slice(i * size, i * size + size)
+// //   );
+
+// // const ScrollVelocity = () => {
+// //   const rows = chunkArray(clubs, 2); // 10 clubs per row
+
+// //   return (
+// //     <div className="w-full py-12 px-6 text-white">
+// //       <div className="max-w-7xl mx-auto">
+// //         <h2 className="text-3xl font-bold text-center mb-10">Top Football Clubs</h2>
+
+// //         <div className="space-y-8">
+// //           {rows.map((rowClubs, rowIndex) => {
+// //             const isEven = rowIndex % 2 === 0;
+// //             const animationClass = isEven
+// //               ? 'animate-[scrollLeft_40s_linear_infinite]'
+// //               : 'animate-[scrollRight_40s_linear_infinite]';
+
+// //             return (
+// //               <div key={rowIndex} className="overflow-hidden w-full">
+// //                 <div className={`flex whitespace-nowrap ${animationClass}`}>
+// //                   {/* Duplicate content for seamless loop */}
+// //                   {/* {[...rowClubs, ...rowClubs].map((club, index) => (
+// //                     <ElectricBorder
+// //                       key={`${rowIndex}-${index}`}
+// //                       color="#7df9ff"
+// //                       speed={1.2}
+// //                       chaos={0.6}
+// //                       thickness={2}
+// //                       style={{ borderRadius: 12 }}
+// //                       className="flex-shrink-0 w-40 sm:w-48 md:w-56 lg:w-60 px-4 py-3"
+// //                     >
+// //                       <div className="text-center">
+// //                         <span className="text-lg font-medium">{club}</span>
+// //                       </div>
+// //                     </ElectricBorder> 
+// //                   ))} */}
+// //                 </div>
+// //               </div>
+// //             );
+// //           })}
+// //         </div>
+// //       </div>
+// //     </div>
+// //   );
+// // };
+
+// // export default ScrollVelocity;
+
+
+// import { useRef, useLayoutEffect, useState } from 'react';
 // import {
 //   motion,
 //   useScroll,
@@ -20,8 +418,8 @@
 //   useTransform,
 //   useMotionValue,
 //   useVelocity,
-//   useAnimationFrame,
-// } from "motion/react";
+//   useAnimationFrame
+// } from 'motion/react';
 
 // function useElementWidth(ref) {
 //   const [width, setWidth] = useState(0);
@@ -33,18 +431,36 @@
 //       }
 //     }
 //     updateWidth();
-//     window.addEventListener("resize", updateWidth);
-//     return () => window.removeEventListener("resize", updateWidth);
+//     window.addEventListener('resize', updateWidth);
+//     return () => window.removeEventListener('resize', updateWidth);
 //   }, [ref]);
 
 //   return width;
 // }
 
-//  export const ScrollVelocity = ({
+
+// const clubs = [
+//   "Bayern Munich", "Borussia Dortmund", "RB Leipzig", "Real Madrid", "Barcelona", "Atlético Madrid",
+//   "Arsenal", "Manchester City", "Liverpool", "Chelsea", "Manchester United", "Tottenham Hotspur",
+//   "Juventus", "AC Milan", "Inter Milan", "Napoli", "AS Roma", "Paris Saint-Germain", "Marseille",
+//   "Ajax", "Feyenoord", "Porto", "Benfica", "Sporting CP", "Galatasaray", "Fenerbahçe", "Celtic",
+//   "Rangers", "Club Brugge", "Shakhtar Donetsk", "Al Hilal", "Al Nassr", "LA Galaxy", "New York City FC",
+//   "Flamengo", "River Plate", "Boca Juniors", "Sao Paulo", "Palmeiras", "Monterrey", "Tigres UANL",
+//   "Seattle Sounders", "Toronto FC", "Pachuca", "Cruzeiro", "Corinthians", "Vasco da Gama", "Besiktas",
+//   "Red Star Belgrade", "Dinamo Zagreb", "Anderlecht", "Leeds United", "Everton", "Roma", "Lazio"
+// ];
+
+
+
+
+
+
+// export const ScrollVelocity = ({
 //   scrollContainerRef,
-//   texts = [],
+//   texts =[clubs.join(" • ")],
+ 
 //   velocity = 100,
-//   className = "",
+//   className = '',
 //   damping = 50,
 //   stiffness = 400,
 //   numCopies = 6,
@@ -52,13 +468,13 @@
 //   parallaxClassName,
 //   scrollerClassName,
 //   parallaxStyle,
-//   scrollerStyle,
+//   scrollerStyle
 // }) => {
 //   function VelocityText({
 //     children,
 //     baseVelocity = velocity,
 //     scrollContainerRef,
-//     className = "",
+//     className = '',
 //     damping,
 //     stiffness,
 //     numCopies,
@@ -66,17 +482,15 @@
 //     parallaxClassName,
 //     scrollerClassName,
 //     parallaxStyle,
-//     scrollerStyle,
+//     scrollerStyle
 //   }) {
 //     const baseX = useMotionValue(0);
-//     const scrollOptions = scrollContainerRef
-//       ? { container: scrollContainerRef }
-//       : {};
+//     const scrollOptions = scrollContainerRef ? { container: scrollContainerRef } : {};
 //     const { scrollY } = useScroll(scrollOptions);
 //     const scrollVelocity = useVelocity(scrollY);
 //     const smoothVelocity = useSpring(scrollVelocity, {
 //       damping: damping ?? 50,
-//       stiffness: stiffness ?? 400,
+//       stiffness: stiffness ?? 400
 //     });
 //     const velocityFactor = useTransform(
 //       smoothVelocity,
@@ -94,8 +508,8 @@
 //       return mod + min;
 //     }
 
-//     const x = useTransform(baseX, (v) => {
-//       if (copyWidth === 0) return "0px";
+//     const x = useTransform(baseX, v => {
+//       if (copyWidth === 0) return '0px';
 //       return `${wrap(-copyWidth, 0, v)}px`;
 //     });
 
@@ -116,23 +530,16 @@
 //     const spans = [];
 //     for (let i = 0; i < (numCopies ?? 1); i++) {
 //       spans.push(
-//         <span
-//           className={`flex-shrink-0 ${className}`}
-//           key={i}
-//           ref={i === 0 ? copyRef : null}
-//         >
+//         <span className={`flex-shrink-0 ${className}`} key={i} ref={i === 0 ? copyRef : null}>
 //           {children}
 //         </span>
 //       );
 //     }
 
 //     return (
-//       <div
-//         className={`${parallaxClassName} relative overflow-hidden`}
-//         style={parallaxStyle}
-//       >
+//       <div className={`${parallaxClassName} relative overflow-hidden`} style={parallaxStyle}>
 //         <motion.div
-//           className={`${scrollerClassName} flex whitespace-nowrap text-center font-sans text-4xl font-bold tracking-[-0.02em] drop-shadow md:text-[5rem] md:leading-[5rem]`}
+//           className={`${scrollerClassName} flex whitespace-nowrap text-center text-2xl font-bold tracking-[-0.02em] drop-shadow`}
 //           style={{ x, ...scrollerStyle }}
 //         >
 //           {spans}
@@ -163,413 +570,183 @@
 //       ))}
 //     </section>
 //   );
-// }; 
-
-
-// export default ScrollVelocity;
-
-// ScrollVelocity.jsx
-
-
-
-
-
-// ScrollVelocity.jsx
-
-// import { useRef, useLayoutEffect, useState } from "react";
-// import {
-//   motion,
-//   useScroll,
-//   useSpring,
-//   useTransform,
-//   useMotionValue,
-//   useVelocity,
-//   useAnimationFrame,
-// } from "motion/react";
-
-// function useElementWidth(ref) {
-//   const [width, setWidth] = useState(0);
-//   useLayoutEffect(() => {
-//     function updateWidth() {
-//       if (ref.current) {
-//         setWidth(ref.current.offsetWidth);
-//       }
-//     }
-//     updateWidth();
-//     window.addEventListener("resize", updateWidth);
-//     return () => window.removeEventListener("resize", updateWidth);
-//   }, [ref]);
-//   return width;
-// }
-
-// function VelocityText({
-//   children,
-//   baseVelocity = 100,
-//   scrollContainerRef,
-//   className = "",
-//   damping = 50,
-//   stiffness = 400,
-//   numCopies = 1,
-//   velocityMapping = { input: [0, 1000], output: [0, 5] },
-//   parallaxClassName,
-//   scrollerClassName,
-//   parallaxStyle,
-//   scrollerStyle,
-// }) {
-//   const baseX = useMotionValue(0);
-//   const scrollOptions = scrollContainerRef ? { container: scrollContainerRef } : {};
-//   const { scrollY } = useScroll(scrollOptions);
-//   const scrollVelocity = useVelocity(scrollY);
-//   const smoothVelocity = useSpring(scrollVelocity, { damping, stiffness });
-//   const velocityFactor = useTransform(
-//     smoothVelocity,
-//     velocityMapping.input,
-//     velocityMapping.output,
-//     { clamp: false }
-//   );
-
-//   const copyRef = useRef(null);
-//   const copyWidth = useElementWidth(copyRef);
-
-//   function wrap(min, max, v) {
-//     const range = max - min;
-//     const mod = (((v - min) % range) + range) % range;
-//     return mod + min;
-//   }
-
-//   const x = useTransform(baseX, (v) => {
-//     if (copyWidth === 0) return "0px";
-//     return `${wrap(-copyWidth, 0, v)}px`;
-//   });
-
-//   const directionFactor = useRef(1);
-//   useAnimationFrame((t, delta) => {
-//     let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
-//     baseX.set(baseX.get() + moveBy);
-
-//     // Flip direction when reaching bounds
-//     if (baseX.get() > 0 || baseX.get() < -copyWidth) {
-//       directionFactor.current *= -1;
-//     }
-//   });
-
-//   const spans = [];
-//   for (let i = 0; i < numCopies; i++) {
-//     spans.push(
-//       <span className={`flex-shrink-0 ${className}`} key={i} ref={i === 0 ? copyRef : null}>
-//         {children}
-//       </span>
-//     );
-//   }
-
-//   return (
-//     <div className={`${parallaxClassName} relative overflow-hidden`} style={parallaxStyle}>
-//       <motion.div
-//         className={`${scrollerClassName} flex whitespace-nowrap`}
-//         style={{ x, ...scrollerStyle }}
-//       >
-//         {spans}
-//       </motion.div>
-//     </div>
-//   );
-// }
-
-// export const ScrollVelocity = ({
-//   children,
-//   scrollContainerRef,
-//   velocity = 75,
-//   className = "",
-//   damping = 50,
-//   stiffness = 400,
-//   numCopies = 1,
-//   velocityMapping = { input: [0, 1000], output: [0, 5] },
-//   parallaxClassName,
-//   scrollerClassName,
-//   parallaxStyle,
-//   scrollerStyle,
-// }) => {
-//   return (
-//     <VelocityText
-//       className={className}
-//       baseVelocity={velocity}
-//       scrollContainerRef={scrollContainerRef}
-//       damping={damping}
-//       stiffness={stiffness}
-//       numCopies={numCopies}
-//       velocityMapping={velocityMapping}
-//       parallaxClassName={parallaxClassName}
-//       scrollerClassName={scrollerClassName}
-//       parallaxStyle={parallaxStyle}
-//       scrollerStyle={scrollerStyle}
-//     >
-//       {children}
-//     </VelocityText>
-//   );
 // };
 
 // export default ScrollVelocity;
 
 
-// import ElectricBorder from '../../components/ElectricBorder';
-
-// const clubs = [
-//   'Manchester United',
-//   'Real Madrid',
-//   'AC Milan',
-//   'Bayern Munich',
-//   'Barcelona',
-//   'Juventus',
-// ];
-
-// const ScrollVelocity = () => {
-//   return (
-//     <div className="flex overflow-x-auto gap-4 p-4">
-//       {clubs.map((club, index) => (
-//         <ElectricBorder
-//           key={index}
-//           color="#7df9ff"
-//           speed={1.2}
-//           chaos={0.6}
-//           thickness={2}
-//           style={{ borderRadius: 12, padding: '12px', minWidth: '200px' }}
-//         >
-//           <div className="club-box text-center">
-//             <p className="text-white font-semibold text-lg">{club}</p>
-//           </div>
-//         </ElectricBorder>
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default ScrollVelocity;
-
-// import ElectricBorder from '../../components/ElectricBorder';
-
-// const clubs = [
-//   "Bayern Munich", "Borussia Dortmund", "RB Leipzig", "Real Madrid", "Barcelona", "Atlético Madrid",
-//   "Arsenal", "Manchester City", "Liverpool", "Chelsea", "Manchester United", "Tottenham Hotspur",
-//   "Juventus", "AC Milan", "Inter Milan", "Napoli", "AS Roma", "Paris Saint-Germain", "Marseille",
-//   "Ajax", "Feyenoord", "Porto", "Benfica", "Sporting CP", "Galatasaray", "Fenerbahçe", "Celtic",
-//   "Rangers", "Club Brugge", "Shakhtar Donetsk", "Al Hilal", "Al Nassr", "LA Galaxy", "New York City FC",
-//   "Flamengo", "River Plate", "Boca Juniors", "Sao Paulo", "Palmeiras", "Monterrey", "Tigres UANL",
-//   "Seattle Sounders", "Toronto FC", "Pachuca", "Cruzeiro", "Corinthians", "Vasco da Gama", "Besiktas",
-//   "Red Star Belgrade", "Dinamo Zagreb", "Anderlecht", "Leeds United", "Everton", "Roma", "Lazio"
-// ];
-
-// // Helper to chunk array into rows
-// const chunkArray = (arr, size) =>
-//   Array.from({ length: Math.ceil(arr.length / size) }, (_, i) =>
-//     arr.slice(i * size, i * size + size)
-//   );
-
-// const ScrollVelocity = () => {
-//   const rows = chunkArray(clubs, 2); // 10 clubs per row
-
-//   return (
-//     <div className="w-full py-12 px-6 text-white">
-//       <div className="max-w-7xl mx-auto">
-//         <h2 className="text-3xl font-bold text-center mb-10">Top Football Clubs</h2>
-
-//         <div className="space-y-8">
-//           {rows.map((rowClubs, rowIndex) => {
-//             const isEven = rowIndex % 2 === 0;
-//             const animationClass = isEven
-//               ? 'animate-[scrollLeft_40s_linear_infinite]'
-//               : 'animate-[scrollRight_40s_linear_infinite]';
-
-//             return (
-//               <div key={rowIndex} className="overflow-hidden w-full">
-//                 <div className={`flex whitespace-nowrap ${animationClass}`}>
-//                   {/* Duplicate content for seamless loop */}
-//                   {/* {[...rowClubs, ...rowClubs].map((club, index) => (
-//                     <ElectricBorder
-//                       key={`${rowIndex}-${index}`}
-//                       color="#7df9ff"
-//                       speed={1.2}
-//                       chaos={0.6}
-//                       thickness={2}
-//                       style={{ borderRadius: 12 }}
-//                       className="flex-shrink-0 w-40 sm:w-48 md:w-56 lg:w-60 px-4 py-3"
-//                     >
-//                       <div className="text-center">
-//                         <span className="text-lg font-medium">{club}</span>
-//                       </div>
-//                     </ElectricBorder> 
-//                   ))} */}
-//                 </div>
-//               </div>
-//             );
-//           })}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ScrollVelocity;
-
-
-import { useRef, useLayoutEffect, useState } from 'react';
-import {
-  motion,
-  useScroll,
-  useSpring,
-  useTransform,
-  useMotionValue,
-  useVelocity,
-  useAnimationFrame
-} from 'motion/react';
-
-function useElementWidth(ref) {
-  const [width, setWidth] = useState(0);
-
-  useLayoutEffect(() => {
-    function updateWidth() {
-      if (ref.current) {
-        setWidth(ref.current.offsetWidth);
-      }
-    }
-    updateWidth();
-    window.addEventListener('resize', updateWidth);
-    return () => window.removeEventListener('resize', updateWidth);
-  }, [ref]);
-
-  return width;
-}
-
-
-const clubs = [
-  "Bayern Munich", "Borussia Dortmund", "RB Leipzig", "Real Madrid", "Barcelona", "Atlético Madrid",
-  "Arsenal", "Manchester City", "Liverpool", "Chelsea", "Manchester United", "Tottenham Hotspur",
-  "Juventus", "AC Milan", "Inter Milan", "Napoli", "AS Roma", "Paris Saint-Germain", "Marseille",
-  "Ajax", "Feyenoord", "Porto", "Benfica", "Sporting CP", "Galatasaray", "Fenerbahçe", "Celtic",
-  "Rangers", "Club Brugge", "Shakhtar Donetsk", "Al Hilal", "Al Nassr", "LA Galaxy", "New York City FC",
-  "Flamengo", "River Plate", "Boca Juniors", "Sao Paulo", "Palmeiras", "Monterrey", "Tigres UANL",
-  "Seattle Sounders", "Toronto FC", "Pachuca", "Cruzeiro", "Corinthians", "Vasco da Gama", "Besiktas",
-  "Red Star Belgrade", "Dinamo Zagreb", "Anderlecht", "Leeds United", "Everton", "Roma", "Lazio"
-];
 
 
 
 
 
 
-export const ScrollVelocity = ({
-  scrollContainerRef,
-  texts =[clubs.join(" • ")],
- 
-  velocity = 100,
-  className = '',
-  damping = 50,
-  stiffness = 400,
-  numCopies = 6,
-  velocityMapping = { input: [0, 1000], output: [0, 5] },
-  parallaxClassName,
-  scrollerClassName,
-  parallaxStyle,
-  scrollerStyle
-}) => {
-  function VelocityText({
-    children,
-    baseVelocity = velocity,
-    scrollContainerRef,
-    className = '',
-    damping,
-    stiffness,
-    numCopies,
-    velocityMapping,
-    parallaxClassName,
-    scrollerClassName,
-    parallaxStyle,
-    scrollerStyle
-  }) {
-    const baseX = useMotionValue(0);
-    const scrollOptions = scrollContainerRef ? { container: scrollContainerRef } : {};
-    const { scrollY } = useScroll(scrollOptions);
-    const scrollVelocity = useVelocity(scrollY);
-    const smoothVelocity = useSpring(scrollVelocity, {
-      damping: damping ?? 50,
-      stiffness: stiffness ?? 400
-    });
-    const velocityFactor = useTransform(
-      smoothVelocity,
-      velocityMapping?.input || [0, 1000],
-      velocityMapping?.output || [0, 5],
-      { clamp: false }
-    );
 
-    const copyRef = useRef(null);
-    const copyWidth = useElementWidth(copyRef);
 
-    function wrap(min, max, v) {
-      const range = max - min;
-      const mod = (((v - min) % range) + range) % range;
-      return mod + min;
-    }
 
-    const x = useTransform(baseX, v => {
-      if (copyWidth === 0) return '0px';
-      return `${wrap(-copyWidth, 0, v)}px`;
-    });
 
-    const directionFactor = useRef(1);
-    useAnimationFrame((t, delta) => {
-      let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 
-      if (velocityFactor.get() < 0) {
-        directionFactor.current = -1;
-      } else if (velocityFactor.get() > 0) {
-        directionFactor.current = 1;
-      }
 
-      moveBy += directionFactor.current * moveBy * velocityFactor.get();
-      baseX.set(baseX.get() + moveBy);
-    });
 
-    const spans = [];
-    for (let i = 0; i < (numCopies ?? 1); i++) {
-      spans.push(
-        <span className={`flex-shrink-0 ${className}`} key={i} ref={i === 0 ? copyRef : null}>
-          {children}
-        </span>
-      );
-    }
 
-    return (
-      <div className={`${parallaxClassName} relative overflow-hidden`} style={parallaxStyle}>
-        <motion.div
-          className={`${scrollerClassName} flex whitespace-nowrap text-center text-2xl font-bold tracking-[-0.02em] drop-shadow`}
-          style={{ x, ...scrollerStyle }}
-        >
-          {spans}
-        </motion.div>
-      </div>
-    );
+
+
+import { useState } from "react"
+import { Mail, Lock, Eye, EyeOff } from "lucide-react"
+//import { Link } from "@tanstack/react-router"
+import { Link } from "react-router-dom"
+import Signup from "./Register"
+export default function Login() {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    rememberMe: false,
+  })
+  const [focusedField, setFocusedField] = useState(null)
+  const [showPassword, setShowPassword] = useState(false)
+
+  const handleInputChange = (field, value) => {
+    setFormData((prev) => ({ ...prev, [field]: value }))
   }
 
   return (
-    <section>
-      {texts.map((text, index) => (
-        <VelocityText
-          key={index}
-          className={className}
-          baseVelocity={index % 2 !== 0 ? -velocity : velocity}
-          scrollContainerRef={scrollContainerRef}
-          damping={damping}
-          stiffness={stiffness}
-          numCopies={numCopies}
-          velocityMapping={velocityMapping}
-          parallaxClassName={parallaxClassName}
-          scrollerClassName={scrollerClassName}
-          parallaxStyle={parallaxStyle}
-          scrollerStyle={scrollerStyle}
-        >
-          {text}&nbsp;
-        </VelocityText>
-      ))}
-    </section>
-  );
-};
+    <div className="min-h-screen bg-black flex flex-col md:flex-row">
+      {/* Image Section - Hidden on mobile, shown on md and up */}
+      <div className="hidden md:flex md:flex-1 bg-neutral-900 items-center justify-center p-8">
+        <div className="w-full h-full max-h-[600px] bg-neutral-800 border border-neutral-700 rounded-2xl overflow-hidden">
+          <img
+            src="https://images.pexels.com/photos/31817684/pexels-photo-31817684.jpeg"
+            alt="WiFi password sign"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </div>
 
-export default ScrollVelocity;
+      {/* Form Section */}
+      <div className="flex-1 bg-black flex items-center justify-center p-4 md:p-8">
+        <div className="w-full max-w-md bg-neutral-900 border border-neutral-700 rounded-2xl p-8 md:p-10">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">Welcome Back</h1>
+            <p className="text-neutral-400 text-base">Sign in to your account</p>
+          </div>
+
+          {/* Form */}
+          <form className="space-y-6">
+            {/* Email Field */}
+            <div className="space-y-2">
+              <label htmlFor="email" className="block text-sm font-medium text-white">
+                Email Address
+              </label>
+              <div className="relative">
+                <Mail
+                  className={
+                    "absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 transition-colors duration-200 " +
+                    (focusedField === "email" ? "text-orange-500" : "text-neutral-500")
+                  }
+                />
+                <input
+                  id="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => handleInputChange("email", e.target.value)}
+                  onFocus={() => setFocusedField("email")}
+                  onBlur={() => setFocusedField(null)}
+                  placeholder="Enter your email address"
+                  className={
+                    "w-full pl-11 pr-4 py-3.5 bg-neutral-800 rounded-xl text-white text-base placeholder-neutral-500 outline-none transition-colors duration-200 border-2 " +
+                    (focusedField === "email" ? "border-orange-500" : "border-neutral-600 hover:border-neutral-500")
+                  }
+                />
+              </div>
+            </div>
+
+            {/* Password Field */}
+            <div className="space-y-2">
+              <label htmlFor="password" className="block text-sm font-medium text-white">
+                Password
+              </label>
+              <div className="relative">
+                <Lock
+                  className={
+                    "absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 transition-colors duration-200 " +
+                    (focusedField === "password" ? "text-orange-500" : "text-neutral-500")
+                  }
+                />
+                <input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  value={formData.password}
+                  onChange={(e) => handleInputChange("password", e.target.value)}
+                  onFocus={() => setFocusedField("password")}
+                  onBlur={() => setFocusedField(null)}
+                  placeholder="Enter your password"
+                  className={
+                    "w-full pl-11 pr-12 py-3.5 bg-neutral-800 rounded-xl text-white text-base placeholder-neutral-500 outline-none transition-colors duration-200 border-2 " +
+                    (focusedField === "password" ? "border-orange-500" : "border-neutral-600 hover:border-neutral-500")
+                  }
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-neutral-500 hover:text-neutral-300 transition-colors duration-200"
+                >
+                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                </button>
+              </div>
+            </div>
+
+            {/* Remember Me and Forgot Password */}
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <input
+                  id="rememberMe"
+                  type="checkbox"
+                  checked={formData.rememberMe}
+                  onChange={(e) => handleInputChange("rememberMe", e.target.checked)}
+                  className="w-4 h-4 bg-neutral-800 border-2 border-neutral-600 rounded focus:ring-orange-500 focus:ring-2 text-orange-500"
+                />
+                <label htmlFor="rememberMe" className="text-sm text-neutral-300">
+                  Remember me
+                </label>
+              </div>
+              <Link
+                href="/forgot-password"
+                className="text-sm text-orange-500 hover:text-orange-400 font-medium transition-colors duration-200"
+              >
+                Forgot password?
+              </Link>
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3.5 px-4 rounded-xl transition-colors duration-200 text-base mt-8"
+            >
+              Sign In
+            </button>
+          </form>
+
+          {/* Sign Up Link */}
+          <div className="text-center mt-8">
+            <p className="text-neutral-400 text-base">
+              Don't have an account?{" "}
+              {/* <Link
+                href="/signup"
+                className="text-orange-500 hover:text-orange-400 font-medium transition-colors duration-200"
+              >
+                Sign up here
+              </Link> */}
+              <Link to="/register" className="text-orange-500 hover:text-orange-400 font-medium transition-colors duration-200">
+  Sign up here
+</Link>
+
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+
