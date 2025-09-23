@@ -80,7 +80,9 @@ import Login from './pages/auth/Login'
 import Footer from './components/layout/Footer'
 import './index.css'
 import { Routes, Route } from 'react-router-dom'
-
+import Projects from './pages/Projects';
+ import FeatureSection from './components/FeatureSection'
+import PrimeMembership from './components/PrimeMembership'
 const App = () => {
   return (
     <>
@@ -90,6 +92,10 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
+      
+      <Projects />
+      <FeatureSection />
+      <PrimeMembership />
       <Footer />
     </>
   )
