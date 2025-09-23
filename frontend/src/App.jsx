@@ -76,6 +76,7 @@ import React from 'react'
 import Navbar from './components/layout/Navbar'
 import Register from './pages/auth/Register'
 import Home from './pages/Home'
+import Landing from './pages/Landing'
 import Login from './pages/auth/Login'
 import Footer from './components/layout/Footer'
 import './index.css'
@@ -84,13 +85,36 @@ import { Routes, Route } from 'react-router-dom'
 const App = () => {
   return (
     <>
-      <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        {/* Landing page as default route without navbar/footer */}
+        <Route path="/" element={<Landing />} />
+        
+        {/* Home page with navbar and footer */}
+        <Route path="/home" element={
+          <>
+            <Navbar />
+            <Home />
+            <Footer />
+          </>
+        } />
+        
+        {/* Other pages with navbar and footer */}
+        <Route path="/login" element={
+          <>
+            <Navbar />
+            <Login />
+            <Footer />
+          </>
+        } />
+        
+        <Route path="/register" element={
+          <>
+            <Navbar />
+            <Register />
+            <Footer />
+          </>
+        } />
       </Routes>
-      <Footer />
     </>
   )
 }

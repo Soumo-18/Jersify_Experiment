@@ -4,13 +4,116 @@
     color-scheme: dark;
 }   
  
-
-
 @utility text-gradient {
   background: linear-gradient(to bottom, #ffffff, #898989);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+/* Landing page animations */
+.char {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.word {
+  display: inline-block;
+  overflow: hidden;
+}
+
+/* Ensure text containers are visible */
+.landing-title,
+.landing-subtitle,
+.landing-description {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* GSAP character and word styles */
+.title-char,
+.subtitle-char {
+  display: inline-block;
+  opacity: 0;
+}
+
+.description-word {
+  display: inline-block;
+  opacity: 0;
+  margin-right: 0.5rem;
+}
+
+/* Loading container */
+.loading-container {
+  opacity: 0;
+}
+
+/* Smooth transitions for page changes */
+.page-transition {
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Custom animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Enhanced loading animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Video loading styles */
+video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* Ensure smooth character animations */
+.title-char, .subtitle-char, .description-word {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+/* Custom scrollbar for better UX */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #f97316, #dc2626);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #ea580c, #b91c1c);
 }
 
 
