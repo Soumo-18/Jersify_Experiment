@@ -72,51 +72,204 @@
 // }
 
 // export default App
-import React from 'react'
+
+//working withour stairs
+// import React from 'react'
+// import Navbar from './components/layout/Navbar'
+// import Register from './pages/auth/Register'
+// import Home from './pages/Home'
+// import Landing from './pages/Landing'
+// import Login from './pages/auth/Login'
+// import Footer from './components/layout/Footer'
+// import './index.css'
+// import { Routes, Route } from 'react-router-dom'
+// import PrimeMembership from './components/PrimeMembership'
+
+// const App = () => {
+//   return (
+//     <>
+//       <Routes>
+//         {/* Landing page as default route without navbar/footer */}
+//         <Route path="/" element={<Landing />} />
+        
+//         {/* Home page with navbar and footer */}
+//         <Route path="/home" element={
+//           <>
+//             <Navbar />
+//             <Home />
+//             <PrimeMembership />
+//             <Footer />
+//           </>
+//         } />
+        
+//         {/* Other pages with navbar and footer */}
+//         <Route path="/login" element={
+//           <>
+//             <Navbar />
+//             <Login />
+
+//             <Footer />
+//           </>
+//         } />
+        
+//         <Route path="/register" element={
+//           <>
+//             <Navbar />
+//             <Register />
+//             <Footer />
+//           </>
+//         } />
+//       </Routes>
+//     </>
+//   )
+// }
+
+// export default App
+
+
+//expo with stairs 
+// import React, { useState, useEffect } from 'react'
+// import Navbar from './components/layout/Navbar'
+// import Register from './pages/auth/Register'
+// import Home from './pages/Home'
+// import Landing from './pages/Landing'
+// import Login from './pages/auth/Login'
+// import Footer from './components/layout/Footer'
+// import Stairs from './components/common/Stairs'
+// import './index.css'
+// import { Routes, Route } from 'react-router-dom'
+// import PrimeMembership from './components/PrimeMembership'
+
+// const App = () => {
+//   const [showStairs, setShowStairs] = useState(true);
+
+//   useEffect(() => {
+//     // Check if this is the first visit
+//     const hasVisited = sessionStorage.getItem('hasVisited');
+    
+//     if (!hasVisited) {
+//       setShowStairs(true);
+//       // Mark as visited
+//       sessionStorage.setItem('hasVisited', 'true');
+//     } else {
+//       setShowStairs(false);
+//     }
+//   }, []);
+
+//   const handleStairsComplete = () => {
+//     setShowStairs(false);
+//   };
+
+//   const mainContent = (
+//     <Routes>
+//       <Route path="/" element={<Landing />} />
+//       <Route path="/home" element={
+//         <>
+//           <Navbar />
+//           <Home />
+//           <PrimeMembership />
+//           <Footer />
+//         </>
+//       } />
+//       <Route path="/login" element={
+//         <>
+//           <Navbar />
+//           <Login />
+//           <Footer />
+//         </>
+//       } />
+//       <Route path="/register" element={
+//         <>
+//           <Navbar />
+//           <Register />
+//           <Footer />
+//         </>
+//       } />
+//     </Routes>
+//   );
+
+//   return (
+//     <>
+//       {showStairs ? (
+//         <Stairs onAnimationComplete={handleStairsComplete}>
+//           {mainContent}
+//         </Stairs>
+//       ) : (
+//         mainContent
+//       )}
+//     </>
+//   );
+// };
+
+// export default App;
+
+//expo 2
+import React, { useState, useEffect } from 'react'
 import Navbar from './components/layout/Navbar'
 import Register from './pages/auth/Register'
 import Home from './pages/Home'
 import Landing from './pages/Landing'
 import Login from './pages/auth/Login'
 import Footer from './components/layout/Footer'
+import Stairs from './components/common/Stairs'
 import './index.css'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
+import PrimeMembership from './components/PrimeMembership'
 
 const App = () => {
+  const [showStairs, setShowStairs] = useState(true);
+  const location = useLocation();
+
+  useEffect(() => {
+    // Always show stairs except on landing page
+    if (location.pathname !== '/') {
+      setShowStairs(true);
+    }
+  }, [location.pathname]); // Trigger on route changes
+
+  const handleStairsComplete = () => {
+    setShowStairs(false);
+  };
+
+  const mainContent = (
+    <Routes>
+      <Route path="/" element={<Landing />} />
+      <Route path="/home" element={
+        <>
+          <Navbar />
+          <Home />
+          <PrimeMembership />
+          <Footer />
+        </>
+      } />
+      <Route path="/login" element={
+        <>
+          <Navbar />
+          <Login />
+          <Footer />
+        </>
+      } />
+      <Route path="/register" element={
+        <>
+          <Navbar />
+          <Register />
+          <Footer />
+        </>
+      } />
+    </Routes>
+  );
+
   return (
     <>
-      <Routes>
-        {/* Landing page as default route without navbar/footer */}
-        <Route path="/" element={<Landing />} />
-        
-        {/* Home page with navbar and footer */}
-        <Route path="/home" element={
-          <>
-            <Navbar />
-            <Home />
-            <Footer />
-          </>
-        } />
-        
-        {/* Other pages with navbar and footer */}
-        <Route path="/login" element={
-          <>
-            <Navbar />
-            <Login />
-            <Footer />
-          </>
-        } />
-        
-        <Route path="/register" element={
-          <>
-            <Navbar />
-            <Register />
-            <Footer />
-          </>
-        } />
-      </Routes>
+      {showStairs && location.pathname !== '/' ? (
+        <Stairs onAnimationComplete={handleStairsComplete}>
+          {mainContent}
+        </Stairs>
+      ) : (
+        mainContent
+      )}
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

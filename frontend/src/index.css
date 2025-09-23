@@ -1,17 +1,19 @@
- @import "tailwindcss";
- :root{
-    font-family: "Poppins",sans-serif;
-    color-scheme: dark;
+@import "tailwindcss";
+
+:root {
+  font-family: "Poppins", sans-serif;
+  color-scheme: dark;
 }   
- 
+
+/* Base text gradient utility */
 @utility text-gradient {
-  background: linear-gradient(to bottom, #ffffff, #898989);
+  background: linear-gradient(to right, #ffa500, #ff4500, #ff0000, #ff1493);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-/* Landing page animations */
+/* Character and word base styles */
 .char {
   display: inline-block;
   overflow: hidden;
@@ -22,19 +24,65 @@
   overflow: hidden;
 }
 
-/* Ensure text containers are visible */
-.landing-title,
-.landing-subtitle,
+/* Landing page text styles */
+.landing-title {
+  position: relative;
+  font-weight: 900;
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+  z-index: 50;
+}
+
+.landing-subtitle {
+  position: relative;
+  font-weight: 900;
+  background-image: linear-gradient(
+    45deg,
+    #ffa500,     /* Bright Orange */
+    #ff4500,     /* Red-Orange */
+    #ff0000,     /* Pure Red */
+    #ff1493      /* Deep Pink */
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  z-index: 50;
+  animation: textGradient 3s linear infinite;
+}
+
 .landing-description {
   opacity: 1 !important;
   visibility: visible !important;
 }
 
-/* GSAP character and word styles */
-.title-char,
+/* Animation for gradient movement */
+@keyframes textGradient {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Character animations */
+.title-char {
+  display: inline-block;
+  opacity: 1 !important;
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+}
+
 .subtitle-char {
   display: inline-block;
-  opacity: 0;
+  opacity: 1;
+  background-image: inherit;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 .description-word {
@@ -43,17 +91,16 @@
   margin-right: 0.5rem;
 }
 
-/* Loading container */
+/* Loading and transitions */
 .loading-container {
   opacity: 0;
 }
 
-/* Smooth transitions for page changes */
 .page-transition {
   transition: opacity 0.5s ease-in-out;
 }
 
-/* Custom animations */
+/* Animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -69,7 +116,6 @@
   animation: fadeInUp 0.8s ease-out;
 }
 
-/* Enhanced loading animation */
 @keyframes pulse-glow {
   0%, 100% {
     opacity: 0.6;
@@ -85,20 +131,22 @@
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
-/* Video loading styles */
+/* Video styles */
 video {
   object-fit: cover;
   width: 100%;
   height: 100%;
 }
 
-/* Ensure smooth character animations */
-.title-char, .subtitle-char, .description-word {
+/* Character transitions */
+.title-char, 
+.subtitle-char, 
+.description-word {
   display: inline-block;
   transition: transform 0.3s ease;
 }
 
-/* Custom scrollbar for better UX */
+/* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -115,30 +163,225 @@ video {
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(45deg, #ea580c, #b91c1c);
 }
+ 
+ 
+/* --- Video ---*/
 
-
-
-
-
-
-/* Enable dark variant when `.dark` class is present on any ancestor 
-@custom-variant dark (&:where(.dark, .dark *));
-
-body {
-  @apply bg-white text-gray-900 transition-colors duration-300;
+/* Add these video styles at the end of your file */
+video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.dark body {
-  @apply bg-gray-900 text-gray-100;
-} */
-
-
-/* @keyframes scrollLeft {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+.video-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
 }
 
-@keyframes scrollRight {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(50%); }
+/* Ensure proper stacking context */
+:root {
+  --video-z-index: 0;
+  --overlay-z-index: 10;
+  --content-z-index: 20;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ /* @import "tailwindcss";
+ :root{
+    font-family: "Poppins",sans-serif;
+    color-scheme: dark;
+}   
+ 
+@utility text-gradient {
+  background: linear-gradient(to bottom, #ffffff, #898989);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.char {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.word {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.landing-title,
+.landing-subtitle,
+.landing-description {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.title-char,
+.subtitle-char {
+  display: inline-block;
+  opacity: 0;
+}
+
+.description-word {
+  display: inline-block;
+  opacity: 0;
+  margin-right: 0.5rem;
+}
+
+.loading-container {
+  opacity: 0;
+}
+
+
+.page-transition {
+  transition: opacity 0.5s ease-in-out;
+}
+
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+
+video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+
+.title-char, .subtitle-char, .description-word {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #f97316, #dc2626);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #ea580c, #b91c1c);
 } */
+  
