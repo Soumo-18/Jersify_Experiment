@@ -381,16 +381,34 @@ import { useNavigate } from 'react-router-dom';
 import { useGSAP } from '@gsap/react';
 import { gsap } from "gsap";
 
+// const Landing = () => {
+//   const navigate = useNavigate();
+//   const [countdown, setCountdown] = useState(4);
+
+//   // Countdown effect
+//   useEffect(() => {
+//     const timer = setInterval(() => {
+//       setCountdown(prev => {
+//         if (prev <= 1) {
+//           navigate('/home');
+//           return 0;
+//         }
+//         return prev - 1;
+//       });
+//     }, 1000);
+
+//     return () => clearInterval(timer);
+//   }, [navigate]);
 const Landing = () => {
   const navigate = useNavigate();
   const [countdown, setCountdown] = useState(4);
 
-  // Countdown effect
   useEffect(() => {
     const timer = setInterval(() => {
       setCountdown(prev => {
         if (prev <= 1) {
-          navigate('/home');
+          // Pass state when navigating to home
+          navigate('/home', { state: { fromLanding: true } });
           return 0;
         }
         return prev - 1;
@@ -399,6 +417,8 @@ const Landing = () => {
 
     return () => clearInterval(timer);
   }, [navigate]);
+
+
 
   // Split text functions
   const splitText = (text, className = '') => {
@@ -490,7 +510,7 @@ const Landing = () => {
           {splitText('From Manchester to Madrid—Jerseys That Speak Your Soul', 'subtitle-char')}
         </p> */}
       <div className='landing-subtitle text-xl sm:text-2xl lg:text-4xl font-black tracking-wide max-w-5xl mb-8'>
-  <p className="mb-2 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text text-transparent">
+  <p className="mb-2 mt-5 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text text-transparent">
     {splitText('From Manchester to Madrid', 'subtitle-char')}
   </p>
   <p className="bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text text-transparent ">

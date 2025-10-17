@@ -204,6 +204,79 @@
 // export default App;
 
 //expo 2
+
+// import React, { useState, useEffect } from 'react'
+// import Navbar from './components/layout/Navbar'
+// import Register from './pages/auth/Register'
+// import Home from './pages/Home'
+// import Landing from './pages/Landing'
+// import Login from './pages/auth/Login'
+// import Footer from './components/layout/Footer'
+// import Stairs from './components/common/Stairs'
+// import './index.css'
+// import { Routes, Route, useLocation } from 'react-router-dom'
+// import PrimeMembership from './components/PrimeMembership'
+
+// const App = () => {
+//   const [showStairs, setShowStairs] = useState(true);
+//   const location = useLocation();
+
+//   useEffect(() => {
+//     // Always show stairs except on landing page
+//     if (location.pathname !== '/') {
+//       setShowStairs(true);
+//     }
+//   }, [location.pathname]); // Trigger on route changes
+
+//   const handleStairsComplete = () => {
+//     setShowStairs(false);
+//   };
+
+//   const mainContent = (
+//     <Routes>
+//       <Route path="/" element={<Landing />} />
+//       <Route path="/home" element={
+//         <>
+//           <Navbar />
+//           <Home />
+//           <PrimeMembership />
+//           <Footer />
+//         </>
+//       } />
+//       <Route path="/login" element={
+//         <>
+//           <Navbar />
+//           <Login />
+//           <Footer />
+//         </>
+//       } />
+//       <Route path="/register" element={
+//         <>
+//           <Navbar />
+//           <Register />
+//           <Footer />
+//         </>
+//       } />
+//     </Routes>
+//   );
+
+//   return (
+//     <>
+//       {showStairs && location.pathname !== '/' ? (
+//         <Stairs onAnimationComplete={handleStairsComplete}>
+//           {mainContent}
+//         </Stairs>
+//       ) : (
+//         mainContent
+//       )}
+//     </>
+//   );
+// };
+
+// export default App;
+
+
+// expo land to home
 import React, { useState, useEffect } from 'react'
 import Navbar from './components/layout/Navbar'
 import Register from './pages/auth/Register'
@@ -213,23 +286,29 @@ import Login from './pages/auth/Login'
 import Footer from './components/layout/Footer'
 import Stairs from './components/common/Stairs'
 import './index.css'
-import { Routes, Route, useLocation } from 'react-router-dom'
-import PrimeMembership from './components/PrimeMembership'
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom'
+import PrimeMembership from './components/PrimeMembership.jsx'
+import FeatureSection from './components/FeatureSection.jsx'
+import ProjectCard from './components/ProjectCard.jsx'
 
 const App = () => {
-  const [showStairs, setShowStairs] = useState(true);
+  const [showStairs, setShowStairs] = useState(false);
   const location = useLocation();
+  const [isNavigating, setIsNavigating] = useState(false);
 
-  useEffect(() => {
-    // Always show stairs except on landing page
-    if (location.pathname !== '/') {
-      setShowStairs(true);
-    }
-  }, [location.pathname]); // Trigger on route changes
-
+  // Handle stair animation completion
   const handleStairsComplete = () => {
     setShowStairs(false);
+    setIsNavigating(false);
   };
+
+  // Listen for navigation from Landing to Home
+  useEffect(() => {
+    if (location.state?.fromLanding) {
+      setShowStairs(true);
+      setIsNavigating(true);
+    }
+  }, [location]);
 
   const mainContent = (
     <Routes>
@@ -238,7 +317,9 @@ const App = () => {
         <>
           <Navbar />
           <Home />
+          <ProjectCard />
           <PrimeMembership />
+          <FeatureSection />
           <Footer />
         </>
       } />
@@ -261,7 +342,7 @@ const App = () => {
 
   return (
     <>
-      {showStairs && location.pathname !== '/' ? (
+      {(showStairs && isNavigating) ? (
         <Stairs onAnimationComplete={handleStairsComplete}>
           {mainContent}
         </Stairs>
@@ -272,4 +353,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default App;  
