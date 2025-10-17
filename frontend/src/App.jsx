@@ -78,13 +78,19 @@ import Register from './pages/auth/Register'
 import Home from './pages/Home'
 import Landing from './pages/Landing'
 import Login from './pages/auth/Login'
+import Products from './pages/Products'
+import ProductDetail from './pages/ProductDetail'
+import Wishlist from './pages/Wishlist'
 import Footer from './components/layout/Footer'
+import { WishlistProvider } from './context/WishlistContext'
+import { Toaster } from 'react-hot-toast'
 import './index.css'
 import { Routes, Route } from 'react-router-dom'
 
 const App = () => {
   return (
-    <>
+    <WishlistProvider>
+      <Toaster position="top-right" />
       <Routes>
         {/* Landing page as default route without navbar/footer */}
         <Route path="/" element={<Landing />} />
@@ -114,8 +120,32 @@ const App = () => {
             <Footer />
           </>
         } />
+        
+        <Route path="/products" element={
+          <>
+            <Navbar />
+            <Products />
+            <Footer />
+          </>
+        } />
+        
+        <Route path="/product/:id" element={
+          <>
+            <Navbar />
+            <ProductDetail />
+            <Footer />
+          </>
+        } />
+        
+        <Route path="/wishlist" element={
+          <>
+            <Navbar />
+            <Wishlist />
+            <Footer />
+          </>
+        } />
       </Routes>
-    </>
+    </WishlistProvider>
   )
 }
 

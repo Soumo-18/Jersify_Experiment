@@ -129,7 +129,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../../assets/logo.png'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Heart } from 'lucide-react'
 import { FaShoppingCart } from 'react-icons/fa'
 
 const Navbar = () => {
@@ -140,7 +140,8 @@ const Navbar = () => {
   }
 
   const navItems = [
-    { label: 'Home', to: '/' },
+    { label: 'Home', to: '/home' },
+    { label: 'Explore Jerseys', to: '/products' },
     { label: 'About', to: '/about' },
     { label: 'Contact', to: '/contact' },
   ]
@@ -172,6 +173,9 @@ const Navbar = () => {
 
           {/* Desktop Auth Buttons */}
           <div className="hidden lg:flex justify-center space-x-6 items-center">
+            <Link to="/wishlist" className="hover:text-orange-400 transition-colors">
+              <Heart className="w-6 h-6" />
+            </Link>
             <Link
               to="/login"
               className="py-2 px-3 hover:border-fuchsia-400 border rounded-md transition-colors duration-200"
