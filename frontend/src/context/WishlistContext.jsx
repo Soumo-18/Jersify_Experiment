@@ -6,9 +6,12 @@ export const useWishlist = () => useContext(WishlistContext);
 
 export const WishlistProvider = ({ children }) => {
   const [wishlist, setWishlist] = useState([]);
+  const [showNotification, setShowNotification] = useState(false);
 
   const addToWishlist = (item) => {
     setWishlist(prev => [...prev, item]);
+    setShowNotification(true);
+    setTimeout(() => setShowNotification(false), 2000);
   };
 
   const removeFromWishlist = (id) => {
@@ -20,7 +23,7 @@ export const WishlistProvider = ({ children }) => {
   };
 
   return (
-    <WishlistContext.Provider value={{ wishlist, addToWishlist, removeFromWishlist, isInWishlist }}>
+    <WishlistContext.Provider value={{ wishlist, addToWishlist, removeFromWishlist, isInWishlist, showNotification }}>
       {children}
     </WishlistContext.Provider>
   );

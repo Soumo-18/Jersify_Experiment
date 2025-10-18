@@ -82,26 +82,38 @@ import Products from './pages/Products'
 import ProductDetail from './pages/ProductDetail'
 import Wishlist from './pages/Wishlist'
 import Footer from './components/layout/Footer'
+import Stairs from './components/common/Stairs'
 import { WishlistProvider } from './context/WishlistContext'
 import { Toaster } from 'react-hot-toast'
 import './index.css'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 
-const App = () => {
+const AppContent = () => {
+  const location = useLocation()
+  const isFromLanding = location.state?.fromLanding
+
   return (
-    <WishlistProvider>
+    <>
       <Toaster position="top-right" />
       <Routes>
         {/* Landing page as default route without navbar/footer */}
         <Route path="/" element={<Landing />} />
         
-        {/* Home page with navbar and footer */}
+        {/* Home page with conditional staircase animation */}
         <Route path="/home" element={
-          <>
-            <Navbar />
-            <Home />
-            <Footer />
-          </>
+          isFromLanding ? (
+            <Stairs>
+              <Navbar />
+              <Home />
+              <Footer />
+            </Stairs>
+          ) : (
+            <>
+              <Navbar />
+              <Home />
+              <Footer />
+            </>
+          )
         } />
         
         {/* Other pages with navbar and footer */}
@@ -145,6 +157,14 @@ const App = () => {
           </>
         } />
       </Routes>
+    </>
+  )
+}
+
+const App = () => {
+  return (
+    <WishlistProvider>
+      <AppContent />
     </WishlistProvider>
   )
 }
