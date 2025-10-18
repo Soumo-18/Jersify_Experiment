@@ -129,18 +129,21 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../../assets/logo.png'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Heart } from 'lucide-react'
 import { FaShoppingCart } from 'react-icons/fa'
+import { useWishlist } from '../../context/WishlistContext'
 
 const Navbar = () => {
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false)
+  const { showNotification } = useWishlist()
 
   const toggleNavbar = () => {
     setMobileDrawerOpen(!mobileDrawerOpen)
   }
 
   const navItems = [
-    { label: 'Home', to: '/' },
+    { label: 'Home', to: '/home' },
+    { label: 'Explore Jerseys', to: '/products' },
     { label: 'About', to: '/about' },
     { label: 'Contact', to: '/contact' },
   ]
@@ -172,6 +175,12 @@ const Navbar = () => {
 
           {/* Desktop Auth Buttons */}
           <div className="hidden lg:flex justify-center space-x-6 items-center">
+            <Link to="/wishlist" className="hover:text-orange-400 transition-colors relative">
+              <Heart className="w-6 h-6" />
+              {showNotification && (
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full wishlist-notification"></div>
+              )}
+            </Link>
             <Link
               to="/login"
               className="py-2 px-3 hover:border-fuchsia-400 border rounded-md transition-colors duration-200"

@@ -163,6 +163,34 @@ video {
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(45deg, #ea580c, #b91c1c);
 }
+
+/* Wishlist notification animation */
+@keyframes wishlist-blink {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  }
+  25% {
+    opacity: 0.8;
+    transform: scale(1.2);
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.4);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+    box-shadow: 0 0 0 8px rgba(239, 68, 68, 0.2);
+  }
+  75% {
+    opacity: 0.9;
+    transform: scale(1.15);
+    box-shadow: 0 0 0 6px rgba(239, 68, 68, 0.3);
+  }
+}
+
+.wishlist-notification {
+  animation: wishlist-blink 1s ease-in-out infinite;
+}
  
  
 /* --- Video ---*/
@@ -189,199 +217,3 @@ video {
   --overlay-z-index: 10;
   --content-z-index: 20;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
- 
- 
- /* @import "tailwindcss";
- :root{
-    font-family: "Poppins",sans-serif;
-    color-scheme: dark;
-}   
- 
-@utility text-gradient {
-  background: linear-gradient(to bottom, #ffffff, #898989);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.char {
-  display: inline-block;
-  overflow: hidden;
-}
-
-.word {
-  display: inline-block;
-  overflow: hidden;
-}
-
-.landing-title,
-.landing-subtitle,
-.landing-description {
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-.title-char,
-.subtitle-char {
-  display: inline-block;
-  opacity: 0;
-}
-
-.description-word {
-  display: inline-block;
-  opacity: 0;
-  margin-right: 0.5rem;
-}
-
-.loading-container {
-  opacity: 0;
-}
-
-
-.page-transition {
-  transition: opacity 0.5s ease-in-out;
-}
-
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.8s ease-out;
-}
-
-
-@keyframes pulse-glow {
-  0%, 100% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.1);
-  }
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
-
-video {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-
-
-.title-char, .subtitle-char, .description-word {
-  display: inline-block;
-  transition: transform 0.3s ease;
-}
-
-
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #1a1a1a;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #f97316, #dc2626);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(45deg, #ea580c, #b91c1c);
-} */
-  
