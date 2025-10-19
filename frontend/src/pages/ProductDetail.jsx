@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Star, Minus, Plus, Heart } from 'lucide-react';
 import { useWishlist } from '../context/WishlistContext';
+import { useCart } from '../context/CartContext';
 import toast from 'react-hot-toast';
 
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { addToWishlist, isInWishlist } = useWishlist();
+  const { addToCart } = useCart();
   const [selectedSize, setSelectedSize] = useState('M');
   const [quantity, setQuantity] = useState(1);
   const [showFront, setShowFront] = useState(true);
@@ -53,6 +55,11 @@ const ProductDetail = () => {
     } else {
       toast('Already in wishlist', { icon: '💙' });
     }
+  };
+
+  const handleAddToCart = () => {
+    addToCart(jersey, selectedSize, quantity);
+    toast.success(`Added ${quantity} item(s) to cart!`);
   };
 
   return (
@@ -170,7 +177,10 @@ const ProductDetail = () => {
 
             {/* Buttons */}
             <div className="flex gap-4 mb-6">
-              <button className="flex-1 bg-orange-500 hover:bg-orange-600 py-3 rounded-lg font-semibold">
+              <button 
+                onClick={handleAddToCart}
+                className="flex-1 bg-orange-500 hover:bg-orange-600 py-3 rounded-lg font-semibold transition"
+              >
                 Add to Cart
               </button>
               <button 

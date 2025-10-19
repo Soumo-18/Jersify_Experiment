@@ -164,7 +164,7 @@
   background: linear-gradient(45deg, #ea580c, #b91c1c);
 }
 
-/* Wishlist notification animation */
+/* Notification animation (for wishlist and cart) */
 @keyframes wishlist-blink {
   0%, 100% {
     opacity: 1;
