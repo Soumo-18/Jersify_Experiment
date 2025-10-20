@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Minus, Plus, Trash2, ShoppingBag, Heart, ArrowLeft } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import toast from 'react-hot-toast';
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -80,7 +81,10 @@ const Cart = () => {
                     </div>
                     <div className="flex gap-6">
                       <button
-                        onClick={() => saveForLater(item.cartId)}
+                        onClick={() => {
+                          saveForLater(item.cartId);
+                          toast.success(`${item.name} saved for later`);
+                        }}
                         className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 px-6 py-2 rounded-lg font-medium transition-all duration-200 text-sm"
                       >
                         Save for Later
@@ -134,7 +138,10 @@ const Cart = () => {
                   </div>
                   <div className="flex flex-col items-center gap-4">
                     <button
-                      onClick={() => moveToCart(item.savedId)}
+                      onClick={() => {
+                        moveToCart(item.savedId);
+                        toast.success(`${item.name} moved to cart`);
+                      }}
                       className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 px-6 py-3 rounded-lg font-medium transition-all duration-200 hover:scale-105"
                     >
                       Move to Cart
