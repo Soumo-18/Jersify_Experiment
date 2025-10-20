@@ -10,6 +10,7 @@ import Wishlist from './pages/Wishlist'
 import Footer from './components/layout/Footer'
 import Stairs from './components/common/Stairs'
 import { WishlistProvider } from './context/WishlistContext'
+import { CartProvider } from './context/CartContext'
 import { Toaster } from 'react-hot-toast'
 import './index.css'
 import { Routes, Route, useLocation } from 'react-router-dom'
@@ -89,9 +90,11 @@ const AppContent = () => {
 
 const App = () => {
   return (
-    <WishlistProvider>
-      <AppContent />
-    </WishlistProvider>
+    <CartProvider>
+      <WishlistProvider>
+        <AppContent />
+      </WishlistProvider>
+    </CartProvider>
   )
 }
 

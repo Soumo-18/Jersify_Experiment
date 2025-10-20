@@ -129,13 +129,16 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../../assets/logo.png'
-import { Menu, X, Heart } from 'lucide-react'
-import { FaShoppingCart } from 'react-icons/fa'
+import { Menu, X, Heart, ShoppingCart } from 'lucide-react'
 import { useWishlist } from '../../context/WishlistContext'
+import { useCart } from '../../context/CartContext'
+import CartPopup from '../CartPopup'
 
 const Navbar = () => {
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false)
+  const [cartOpen, setCartOpen] = useState(false)
   const { showNotification } = useWishlist()
+  const { showNotification: showCartNotification, getTotalItems } = useCart()
 
   const toggleNavbar = () => {
     setMobileDrawerOpen(!mobileDrawerOpen)
@@ -152,18 +155,13 @@ const Navbar = () => {
     <nav className="sticky top-0 z-50 py-3 backdrop-blur-lg border-b border-neutral-700/80">
       <div className="container px-4 mx-auto relative lg:text-sm">
         <div className="flex justify-between items-center">
-          {/* Logo and Search */}
-          <div className="flex space-x-12 items-center flex-shrink-0">
+          {/* Logo */}
+          <div className="flex items-center flex-shrink-0">
             <img className="h-10 w-20" src={logo} alt="logo" />
-            <input
-              type="text"
-              placeholder="Search"
-              className="hidden md:block rounded-xl text-center border hover:border-lime-300 px-6 py-2"
-            />
           </div>
 
-          {/* Desktop Nav Links */}
-          <ul className="hidden lg:flex ml-14 space-x-12">
+          {/* Desktop Nav Links - Centered */}
+          <ul className="hidden lg:flex space-x-12 absolute left-1/2 transform -translate-x-1/2">
             {navItems.map((item, index) => (
               <li key={index}>
                 <Link to={item.to} className="hover:text-orange-400 transition-colors duration-200">
@@ -181,6 +179,17 @@ const Navbar = () => {
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full wishlist-notification"></div>
               )}
             </Link>
+            <button onClick={() => setCartOpen(true)} className="relative hover:text-orange-400 transition-colors">
+              <ShoppingCart className="w-6 h-6" />
+              {!showCartNotification && getTotalItems() > 0 && (
+                <span className="absolute -top-2 -right-2 bg-orange-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                  {getTotalItems()}
+                </span>
+              )}
+              {showCartNotification && (
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-blue-500 rounded-full wishlist-notification"></div>
+              )}
+            </button>
             <Link
               to="/login"
               className="py-2 px-3 hover:border-fuchsia-400 border rounded-md transition-colors duration-200"
@@ -193,7 +202,6 @@ const Navbar = () => {
             >
               Create an account
             </Link>
-            <FaShoppingCart className="w-6 h-6 text-white" />
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -239,6 +247,7 @@ const Navbar = () => {
           </div>
         )}
       </div>
+      <CartPopup isOpen={cartOpen} onClose={() => setCartOpen(false)} />
     </nav>
   )
 }
