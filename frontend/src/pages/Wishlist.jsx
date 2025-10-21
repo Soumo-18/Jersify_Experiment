@@ -23,7 +23,7 @@ const Wishlist = () => {
         <span>{item.name} moved to cart</span>
         <button 
           onClick={() => navigate('/cart')}
-          className="ml-2 underline text-orange-500 hover:text-orange-200"
+          className="ml-2 underline text-orange-500 hover:text-blue-600"
         >
           Go to Cart
         </button>
