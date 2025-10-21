@@ -7,6 +7,7 @@ import Login from './pages/auth/Login'
 import Products from './pages/Products'
 import ProductDetail from './pages/ProductDetail'
 import Wishlist from './pages/Wishlist'
+import Cart from './pages/Cart'
 import Footer from './components/layout/Footer'
 import Stairs from './components/common/Stairs'
 import { WishlistProvider } from './context/WishlistContext'
@@ -80,6 +81,14 @@ const AppContent = () => {
           <>
             <Navbar />
             <Wishlist />
+            <Footer />
+          </>
+        } />
+        
+        <Route path="/cart" element={
+          <>
+            <Navbar />
+            <Cart />
             <Footer />
           </>
         } />

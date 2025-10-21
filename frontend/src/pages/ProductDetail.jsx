@@ -8,7 +8,7 @@ import toast from 'react-hot-toast';
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { addToWishlist, isInWishlist } = useWishlist();
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const { addToCart } = useCart();
   const [selectedSize, setSelectedSize] = useState('M');
   const [quantity, setQuantity] = useState(1);
@@ -48,12 +48,13 @@ const ProductDetail = () => {
     { id: 3, user: 'Mike R.', rating: 5, comment: 'Authentic and comfortable. Highly recommend!', date: '2024-01-05' },
   ];
 
-  const handleAddToWishlist = () => {
+  const handleToggleWishlist = () => {
     if (!isInWishlist(jersey.id)) {
       addToWishlist(jersey);
       toast.success('Added to wishlist!');
     } else {
-      toast('Already in wishlist', { icon: '💙' });
+      removeFromWishlist(jersey.id);
+      toast.success('Removed from wishlist!');
     }
   };
 
@@ -184,7 +185,7 @@ const ProductDetail = () => {
                 Add to Cart
               </button>
               <button 
-                onClick={handleAddToWishlist}
+                onClick={handleToggleWishlist}
                 className={`p-3 rounded-lg transition ${isInWishlist(jersey.id) ? 'bg-red-500 text-white' : 'bg-gray-800 hover:bg-gray-700'}`}
               >
                 <Heart size={24} className={isInWishlist(jersey.id) ? 'fill-current' : ''} />

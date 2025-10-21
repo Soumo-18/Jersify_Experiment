@@ -401,7 +401,7 @@ import { gsap } from "gsap";
 //   }, [navigate]);
 const Landing = () => {
   const navigate = useNavigate();
-  const [countdown, setCountdown] = useState(4);
+  const [countdown, setCountdown] = useState(5);
 
   useEffect(() => {
     const timer = setInterval(() => {

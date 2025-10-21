@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 
 const Products = () => {
   const navigate = useNavigate();
-  const { addToWishlist, isInWishlist } = useWishlist();
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedLeague, setSelectedLeague] = useState('All');
   const [priceRange, setPriceRange] = useState('All');
@@ -46,7 +46,8 @@ const Products = () => {
       addToWishlist(jersey);
       toast.success('Added to wishlist!');
     } else {
-      toast('Already in wishlist', { icon: '💙' });
+      removeFromWishlist(jersey.id);
+      toast.success('Removed from wishlist!');
     }
   };
 

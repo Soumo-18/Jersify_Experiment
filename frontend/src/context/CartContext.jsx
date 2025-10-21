@@ -6,6 +6,7 @@ export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const [savedForLater, setSavedForLater] = useState([]);
   const [showNotification, setShowNotification] = useState(false);
 
   const addToCart = (item, size, quantity) => {
@@ -53,15 +54,42 @@ export const CartProvider = ({ children }) => {
     setCart([]);
   };
 
+  const saveForLater = (cartId) => {
+    const item = cart.find(item => item.cartId === cartId);
+    if (item) {
+      const savedItem = { ...item, quantity: 1, savedId: `saved-${Date.now()}` };
+      setSavedForLater(prev => [...prev, savedItem]);
+      removeFromCart(cartId);
+    }
+  };
+
+  const moveToCart = (savedId) => {
+    const item = savedForLater.find(item => item.savedId === savedId);
+    if (item) {
+      const cartItem = { ...item, quantity: 1, cartId: `${item.id}-${item.size}-${Date.now()}` };
+      delete cartItem.savedId;
+      setCart(prev => [...prev, cartItem]);
+      setSavedForLater(prev => prev.filter(item => item.savedId !== savedId));
+    }
+  };
+
+  const removeFromSaved = (savedId) => {
+    setSavedForLater(prev => prev.filter(item => item.savedId !== savedId));
+  };
+
   return (
     <CartContext.Provider value={{ 
       cart, 
+      savedForLater,
       addToCart, 
       removeFromCart, 
       updateQuantity,
       getTotalPrice,
       getTotalItems,
       clearCart,
+      saveForLater,
+      moveToCart,
+      removeFromSaved,
       showNotification 
     }}>
       {children}
