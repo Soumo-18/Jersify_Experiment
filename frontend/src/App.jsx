@@ -15,7 +15,7 @@ import { CartProvider } from './context/CartContext'
 import { Toaster } from 'react-hot-toast'
 import './index.css'
 import { Routes, Route, useLocation } from 'react-router-dom'
-
+import Projects from './pages/Projects.jsx'
 const AppContent = () => {
   const location = useLocation()
   const isFromLanding = location.state?.fromLanding
@@ -39,6 +39,7 @@ const AppContent = () => {
             <>
               <Navbar />
               <Home />
+              <Projects/>
               <Footer />
             </>
           )
