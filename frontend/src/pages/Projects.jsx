@@ -7,24 +7,24 @@ import { ScrollTrigger } from 'gsap/all'
 const Projects = () => {
 
   const projects = [
-  //   {
-  //   image1: 'https://k72.ca/uploads/caseStudies/PJC/Thumbnails/PJC_SiteK72_Thumbnail_1280x960-1280x960.jpg',
-  //   image2: 'https://k72.ca/uploads/caseStudies/WIDESCAPE/WS---K72.ca---Thumbnail-1280x960.jpg'
-  // }, {
-  //   image1: 'https://k72.ca/uploads/caseStudies/OKA/OKA_thumbnail-1280x960.jpg',
-  //   image2: 'https://k72.ca/uploads/caseStudies/Opto/thumbnailimage_opto-1280x960.jpg'
-  // }, 
-  // {
-  //   image1: 'https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/4b7d8d8d64a943cc9a5c629c4ca483b7_9366/Real_Madrid_24-25_Home_Mini_Kit_Kids_White_IT5175_01_laydown.jpg',
-  //   image2: 'https://assets.adidas.com/images/w_600,f_auto,q_auto/ca0497a38c7f48dfa0bff9acfd5a8081_9366/Predator_League_Firm_Ground_Boots_Kids_Blue_ID0911_22_model.jpg'
-  // },
+    {
+    image1: 'https://k72.ca/uploads/caseStudies/PJC/Thumbnails/PJC_SiteK72_Thumbnail_1280x960-1280x960.jpg',
+    image2: 'https://k72.ca/uploads/caseStudies/WIDESCAPE/WS---K72.ca---Thumbnail-1280x960.jpg'
+  }, {
+    image1: 'https://k72.ca/uploads/caseStudies/OKA/OKA_thumbnail-1280x960.jpg',
+    image2: 'https://k72.ca/uploads/caseStudies/Opto/thumbnailimage_opto-1280x960.jpg'
+  }, 
+  {
+    image1: 'https://assets.adidas.com/images/h_2000,f_auto,q_auto,fl_lossy,c_fill,g_auto/4b7d8d8d64a943cc9a5c629c4ca483b7_9366/Real_Madrid_24-25_Home_Mini_Kit_Kids_White_IT5175_01_laydown.jpg',
+    image2: 'https://assets.adidas.com/images/w_600,f_auto,q_auto/ca0497a38c7f48dfa0bff9acfd5a8081_9366/Predator_League_Firm_Ground_Boots_Kids_Blue_ID0911_22_model.jpg'
+  },
 
 
 
-   {
-    image1: 'https://fulltimestore.in/cdn/shop/files/intermiamiawayset.jpg?v=1744929843&width=1080',
-    image2: 'https://fulltimestore.in/cdn/shop/files/Screenshot2025-09-21at16-52-4726311a11a192f4f24989f9960f03873cd25b2776c795f168zo12vvl12vvufowebp.jpg_WEBPImage1200x1200pixels_Scaled_60.png?v=1758453831&width=700'
-  }
+  //  {
+  //   image1: 'https://fulltimestore.in/cdn/shop/files/intermiamiawayset.jpg?v=1744929843&width=1080',
+  //   image2: 'https://fulltimestore.in/cdn/shop/files/Screenshot2025-09-21at16-52-4726311a11a192f4f24989f9960f03873cd25b2776c795f168zo12vvl12vvufowebp.jpg_WEBPImage1200x1200pixels_Scaled_60.png?v=1758453831&width=700'
+  // }
 ]
 
 
