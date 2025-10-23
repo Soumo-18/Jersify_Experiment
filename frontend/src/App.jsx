@@ -33,6 +33,7 @@ const AppContent = () => {
             <Stairs>
               <Navbar />
               <Home />
+              <Projects/>
               <Footer />
             </Stairs>
           ) : (
