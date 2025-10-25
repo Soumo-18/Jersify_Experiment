@@ -660,7 +660,7 @@ export default function Login() {
   return (
     <div className="min-h-screen bg-black flex flex-col md:flex-row">
       {/* Image Section - Football related */}
-      <div className="hidden md:flex md:flex-1 bg-neutral-900 items-center justify-center p-8">
+      <div className="hidden md:flex md:flex-1 bg-neutral-900 items-center justify-center p-10">
         <div className="w-full h-full max-h-[600px] bg-neutral-800 border border-neutral-700 rounded-2xl overflow-hidden">
           <img
             src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1993&q=80"
@@ -683,7 +683,7 @@ export default function Login() {
           <button
             type="button"
             onClick={handleGoogleLogin}
-            className="w-full mb-6 bg-white hover:bg-gray-100 text-gray-900 font-semibold py-3.5 px-4 rounded-xl transition-colors duration-200 text-base flex items-center justify-center gap-3"
+            className="w-full mb-6 bg-white hover:bg-gray-100 text-gray-900 font-semibold py-3.5 px-4 rounded-xl transition-colors duration-200 text-base flex items-center justify-center gap-3 cursor-pointer"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24">
               <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
