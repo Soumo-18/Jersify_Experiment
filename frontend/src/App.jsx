@@ -4,6 +4,8 @@ import Register from './pages/auth/Register'
 import Home from './pages/Home'
 import Landing from './pages/Landing'
 import Login from './pages/auth/Login'
+import ProfileCompletion from './pages/auth/ProfileCompletion'
+import OAuthCallback from './pages/auth/OAuthCallback'
 import Products from './pages/Products'
 import ProductDetail from './pages/ProductDetail'
 import Wishlist from './pages/Wishlist'
@@ -62,6 +64,12 @@ const AppContent = () => {
             <Footer />
           </>
         } />
+        
+        {/* OAuth callback route */}
+        <Route path="/auth/callback" element={<OAuthCallback />} />
+        
+        {/* Profile completion route */}
+        <Route path="/auth/complete-profile" element={<ProfileCompletion />} />
         
         <Route path="/products" element={
           <>
