@@ -642,7 +642,9 @@ export default function Login() {
         localStorage.setItem("user", JSON.stringify(data))
         
         toast.success("Login successful!")
-        navigate("/home")
+        setTimeout(() => {
+          window.location.href = "/home"
+        }, 1000)
       } else {
         toast.error(data.message || "Login failed")
       }

@@ -26,7 +26,13 @@ export const isAuthenticated = () => {
 export const logout = () => {
   localStorage.removeItem('token')
   localStorage.removeItem('user')
-  window.location.href = '/login'
+  // Import toast dynamically to avoid circular dependency
+  import('react-hot-toast').then(({ default: toast }) => {
+    toast.success('Logged out successfully!')
+    setTimeout(() => {
+      window.location.href = '/login'
+    }, 1000)
+  })
 }
 
 export const isProfileComplete = () => {

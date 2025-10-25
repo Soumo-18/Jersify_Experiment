@@ -24,5 +24,8 @@ router.get(
 
 // --- Private Routes ---
 router.route('/profile').put(protect, updateUserProfile);
+router.post('/logout', (req, res) => {
+  res.json({ message: 'Logged out successfully' });
+});
 
 export default router;

@@ -126,20 +126,30 @@
 // export default Navbar
 
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../../assets/logo.png'
-import { Menu, X, Heart, ShoppingCart } from 'lucide-react'
+import { Menu, X, Heart, ShoppingCart, LogOut } from 'lucide-react'
 import { useWishlist } from '../../context/WishlistContext'
 import { useCart } from '../../context/CartContext'
+import { isAuthenticated, logout } from '../../utils/auth'
 
 const Navbar = () => {
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const { showNotification } = useWishlist()
   const { showNotification: showCartNotification, getTotalItems } = useCart()
 
+  useEffect(() => {
+    setIsLoggedIn(isAuthenticated())
+  }, [])
+
   const toggleNavbar = () => {
     setMobileDrawerOpen(!mobileDrawerOpen)
+  }
+
+  const handleLogout = () => {
+    logout()
   }
 
   const navItems = [
@@ -188,18 +198,30 @@ const Navbar = () => {
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-blue-500 rounded-full wishlist-notification"></div>
               )}
             </Link>
-            <Link
-              to="/login"
-              className="py-2 px-3 hover:border-fuchsia-400 border rounded-md transition-colors duration-200"
-            >
-              Sign In
-            </Link>
-            <Link
-              to="/register"
-              className="hover:scale-105 bg-gradient-to-r from-orange-500 to-orange-800 py-2 px-3 rounded-md transition-transform duration-200"
-            >
-              Create an account
-            </Link>
+            {isLoggedIn ? (
+              <button
+                onClick={handleLogout}
+                className="py-2 px-3 hover:bg-red-600 bg-orange-500 text-white rounded-md transition-colors duration-200 flex items-center gap-2"
+              >
+                <LogOut className="w-4 h-4" />
+                Logout
+              </button>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  className="py-2 px-3 hover:border-fuchsia-400 border rounded-md transition-colors duration-200"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  to="/register"
+                  className="hover:scale-105 bg-gradient-to-r from-orange-500 to-orange-800 py-2 px-3 rounded-md transition-transform duration-200"
+                >
+                  Create an account
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile Icons and Menu Toggle */}
@@ -244,20 +266,32 @@ const Navbar = () => {
               ))}
             </ul>
             <div className="flex space-x-6">
-              <Link
-                to="/login"
-                className="py-2 px-3 border rounded-md text-white hover:border-orange-500 transition-colors duration-200"
-                onClick={toggleNavbar}
-              >
-                Sign In
-              </Link>
-              <Link
-                to="/register"
-                className="py-2 px-3 rounded-md bg-gradient-to-r from-orange-500 to-orange-800 text-white hover:scale-105 transition-transform duration-200"
-                onClick={toggleNavbar}
-              >
-                Create an account
-              </Link>
+              {isLoggedIn ? (
+                <button
+                  onClick={() => { handleLogout(); toggleNavbar(); }}
+                  className="py-2 px-3 bg-red-500 hover:bg-red-600 text-white rounded-md transition-colors duration-200 flex items-center gap-2"
+                >
+                  <LogOut className="w-4 h-4" />
+                  Logout
+                </button>
+              ) : (
+                <>
+                  <Link
+                    to="/login"
+                    className="py-2 px-3 border rounded-md text-white hover:border-orange-500 transition-colors duration-200"
+                    onClick={toggleNavbar}
+                  >
+                    Sign In
+                  </Link>
+                  <Link
+                    to="/register"
+                    className="py-2 px-3 rounded-md bg-gradient-to-r from-orange-500 to-orange-800 text-white hover:scale-105 transition-transform duration-200"
+                    onClick={toggleNavbar}
+                  >
+                    Create an account
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         )}

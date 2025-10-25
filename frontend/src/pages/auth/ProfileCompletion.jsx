@@ -96,7 +96,9 @@ export default function ProfileCompletion() {
         localStorage.setItem("user", JSON.stringify(data))
         
         toast.success("Profile completed successfully!")
-        navigate("/home")
+        setTimeout(() => {
+          window.location.href = "/home"
+        }, 1000)
       } else {
         toast.error(data.message || "Failed to update profile")
       }
@@ -138,7 +140,7 @@ export default function ProfileCompletion() {
             </div>
             <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">Complete Your Profile</h1>
             <p className="text-neutral-400 text-base">
-              Welcome {user.name}! Please provide additional details to complete your registration.
+              Welcome {user.name}! Please complete your profile to continue.
             </p>
           </div>
 

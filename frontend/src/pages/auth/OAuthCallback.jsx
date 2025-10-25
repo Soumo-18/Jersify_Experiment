@@ -26,9 +26,10 @@ export default function OAuthCallback() {
       // Check if profile is complete
       if (payload.isProfileComplete) {
         toast.success("Login successful!")
-        navigate("/home")
+        setTimeout(() => {
+          window.location.href = "/home"
+        }, 1000)
       } else {
-        toast.success("Please complete your profile to continue")
         navigate("/auth/complete-profile")
       }
     } catch (error) {
